@@ -2,6 +2,7 @@
   (:require [com.stuartsierra.component  :as component]
             [manifold.deferred           :as d]
             [config.core                 :refer [env]]
+            [io.hosaka.water.handler     :refer [new-handler]]
             [io.hosaka.common.rabbitmq   :refer [new-rabbitmq]])
   (:import [com.pi4j.wiringpi Gpio])
   (:gen-class))
@@ -9,6 +10,7 @@
 (defn init-system [env]
   (component/system-map
    :rabbitmq (new-rabbitmq env)
+   :handler (new-handler)
    ))
 
 (defonce system (atom {}))
